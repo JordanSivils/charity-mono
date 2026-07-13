@@ -1,0 +1,32 @@
+{
+  "name": "@charity-mono/irs-data-import",
+  "version": "1.0.0",
+  "description": "etl pipeline",
+  "license": "ISC",
+  "author": "jordansivils",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "start": "node dist/index.js",
+    "from-stream": "node dist/from-stream/query.js",
+    "geocode": "node dist/from-stream/geocode.js",
+    "geo-to-pg": "node dist/from-stream/copy-stream.js"
+  },
+  "devDependencies": {
+    "@types/node": "^25.2.1",
+    "@types/pg": "^8.16.0",
+    "@types/pg-copy-streams": "^1.2.5",
+    "prisma": "^7.3.0",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@prisma/adapter-pg": "^7.3.0",
+    "@prisma/client": "^7.3.0",
+    "dotenv": "^17.2.4",
+    "fast-csv": "^5.0.5",
+    "pg": "^8.18.0",
+    "pg-copy-streams": "^7.0.0"
+  }
+}

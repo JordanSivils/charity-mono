@@ -1,0 +1,81 @@
+upon db wipe for migration. this is the propper steps to envoke the merge and update function:
+
+1) paste into sql editor
+CREATE OR REPLACE FUNCTION public.insert_charity_to_final()
+ RETURNS integer
+ LANGUAGE plpgsql
+AS $function$
+	BEGIN
+		MERGE into "Charity" as chari
+		USING "CharityStaging" as stg
+		ON chari.ein = stg.ein
+		
+		WHEN MATCHED AND chari.hash_value IS DISTINCT FROM stg.hash_value THEN
+		 UPDATE SET 
+		 	name = stg."name",
+		 	ico = stg.ico,
+		 	street = stg.street,
+		 	city = stg.city,
+		 	state = stg."state",
+		 	zip = stg.zip,
+		 	"group" = stg."group",
+			subsection = stg.subsection,
+			affiliation = stg.affiliation,
+			classification = stg.classification,
+			ruling = stg.ruling,
+			deductibility = stg.deductibility,
+			foundation = stg.foundation,
+			activity = stg.activity,
+			organization = stg.organization,
+			"status" = stg.status,	
+			tax_period = stg.tax_period,
+			filing_req_code = stg.filing_req_code,
+			pf_filing_req_code = stg.pf_filing_req_code,
+			account_paid = stg.account_paid,
+			asset_amount = stg.asset_amount,
+			income_amount = stg.income_amount,
+			revenue_amount = stg.revenue_amount,
+			ntee_code = stg.ntee_code,
+			ntee_code_valid = stg.ntee_code_valid,
+			ntee_group = stg.ntee_group,
+			hash_value = stg.hash_value
+		 	
+		WHEN NOT MATCHED THEN
+			INSERT (ein, name, ico, street, city, state, zip, "group", subsection, affiliation, classification, ruling, deductibility, foundation, activity, organization, "status", tax_period, filing_req_code, pf_filing_req_code, account_paid, asset_amount, income_amount, revenue_amount, ntee_code, ntee_code_valid, ntee_group, hash_value)
+			VALUES (
+				stg.ein,
+				stg."name",
+				stg.ico,
+				stg.street,
+				stg.city,
+				stg."state",
+				stg.zip,
+				stg."group",
+				stg.subsection,
+				stg.affiliation,
+				stg.classification,
+				stg.ruling,
+				stg.deductibility,
+				stg.foundation,
+				stg.activity,
+				stg.organization,
+				stg."status",
+				stg.tax_period,
+				stg.filing_req_code,
+				stg.pf_filing_req_code,
+				stg.account_paid,
+				stg.asset_amount,
+				stg.income_amount,
+				stg.revenue_amount,
+				stg.ntee_code,
+				stg.ntee_code_valid,
+				stg.ntee_group,
+				stg.hash_value
+			);
+		RETURN 0;
+	END;
+$function$
+
+2) you need to allow the id to self create during merge if not exists:
+ALTER TABLE "Charity"
+ALTER COLUMN id SET DEFAULT gen_random_uuid();

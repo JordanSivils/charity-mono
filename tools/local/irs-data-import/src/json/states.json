@@ -1,0 +1,10 @@
+[
+    {
+        "state": "North Carolina",
+        "irsUrl": "https://www.irs.gov/pub/irs-soi/eo_nc.csv"
+    },
+    {
+        "state": "Nevada",
+        "irsUrl": "https://www.irs.gov/pub/irs-soi/eo_nv.csv"
+    }
+]
