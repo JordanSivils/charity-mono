@@ -1,0 +1,15 @@
+[
+    {
+      "code": "1",
+      "description": "Contributions are deductible."
+    },
+    {
+      "code": "2",
+      "description": "Contributions are not deductible."
+    },
+    {
+      "code": "4",
+      "description": "Contributions are deductible by treaty (foreign organizations)."
+    }
+  ]
+  

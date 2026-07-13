@@ -1,0 +1,107 @@
+[
+    {
+      "code": "A",
+      "description": "Arts, Culture and Humanities"
+    },
+    {
+      "code": "B",
+      "description": "Education"
+    },
+    {
+      "code": "C",
+      "description": "Environment"
+    },
+    {
+      "code": "D",
+      "description": "Animal-Related"
+    },
+    {
+      "code": "E",
+      "description": "Health Care"
+    },
+    {
+      "code": "F",
+      "description": "Mental Health & Crisis Intervention"
+    },
+    {
+      "code": "G",
+      "description": "Voluntary Health Associations & Medical Disciplines"
+    },
+    {
+      "code": "H",
+      "description": "Medical Research"
+    },
+    {
+      "code": "I",
+      "description": "Crime & Legal-Related"
+    },
+    {
+      "code": "J",
+      "description": "Employment"
+    },
+    {
+      "code": "K",
+      "description": "Food, Agriculture and Nutrition"
+    },
+    {
+      "code": "L",
+      "description": "Housing & Shelter"
+    },
+    {
+      "code": "M",
+      "description": "Public Safety, Disaster Preparedness and Relief"
+    },
+    {
+      "code": "N",
+      "description": "Recreation & Sports"
+    },
+    {
+      "code": "O",
+      "description": "Youth Development"
+    },
+    {
+      "code": "P",
+      "description": "Human Services"
+    },
+    {
+      "code": "Q",
+      "description": "International, Foreign Affairs and National Security"
+    },
+    {
+      "code": "R",
+      "description": "Civil Rights, Social Action & Advocacy"
+    },
+    {
+      "code": "S",
+      "description": "Community Improvement & Capacity Building"
+    },
+    {
+      "code": "T",
+      "description": "Philanthropy, Voluntarism and Grantmaking Foundations"
+    },
+    {
+      "code": "U",
+      "description": "Science & Technology"
+    },
+    {
+      "code": "V",
+      "description": "Social Science"
+    },
+    {
+      "code": "W",
+      "description": "Public & Societal Benefit"
+    },
+    {
+      "code": "X",
+      "description": "Religion-Related"
+    },
+    {
+      "code": "Y",
+      "description": "Mutual & Membership Benefit"
+    },
+    {
+      "code": "Z",
+      "description": "Unknown"
+    }
+  ]
+  
