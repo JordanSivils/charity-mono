@@ -1,0 +1,173 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Charity {
+  id                 String                    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  ein                String                    @unique
+  name               String?
+  ico                String?
+  street             String?
+  city               String?
+  state              String?
+  zip                String?
+  group              String?
+  subsection         String?
+  affiliation        String?
+  classification     String?
+  ruling             String?
+  deductibility      String?
+  foundation         String?
+  activity           String?
+  organization       String?
+  status             String?
+  tax_period         String?
+  filing_req_code    String?
+  pf_filing_req_code String?
+  account_paid       String?
+  asset_amount       Decimal?                  @db.Decimal(14, 2)
+  income_amount      Decimal?                  @db.Decimal(14, 2)
+  revenue_amount     Decimal?                  @db.Decimal(14, 2)
+  ntee_code          String?
+  ntee_group         String?
+  hash_value         String?
+  geocode_status     Int?
+  geocoded_at        DateTime?                 @db.Timestamptz(6)
+  lat                Decimal?                  @db.Decimal(9, 6)
+  lng                Decimal?                  @db.Decimal(9, 6)
+  location           Unsupported("geography")?
+
+  @@index([zip])
+  @@index([state, city])
+  @@index([ntee_group])
+  @@index([status])
+  @@index([deductibility])
+}
+
+model CharityStaging {
+  ein                String    @unique
+  name               String?
+  ico                String?
+  street             String?
+  city               String?
+  state              String?
+  zip                String?
+  group              String?
+  subsection         String?
+  affiliation        String?
+  classification     String?
+  ruling             String?
+  deductibility      String?
+  foundation         String?
+  activity           String?
+  organization       String?
+  status             String?
+  tax_period         String?
+  filing_req_code    String?
+  pf_filing_req_code String?
+  account_paid       String?
+  asset_amount       Decimal?  @db.Decimal(14, 2)
+  income_amount      Decimal?  @db.Decimal(14, 2)
+  revenue_amount     Decimal?  @db.Decimal(14, 2)
+  ntee_code          String?
+  ntee_group         String?
+  hash_value         String?
+  geocode_status     Int?
+  geocoded_at        DateTime? @db.Timestamptz(6)
+  lat                Decimal?  @db.Decimal(9, 6)
+  lng                Decimal?  @db.Decimal(9, 6)
+
+  @@index([ein])
+}
+
+model ApiKey {
+  id          String    @id @default(uuid())
+  environment ApiKeyEnv
+  keyHash     String    @unique
+  keyPrefix   String
+  isActive    Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  revokedAt   DateTime?
+  lastUsedAt  DateTime?
+  userId      String
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, environment])
+  @@index([userId, environment, isActive])
+}
+
+model User {
+  id          String       @id @default(uuid())
+  clerkId     String       @unique
+  name        String?
+  tierId      String
+  createdAt   DateTime     @default(now())
+  email       String       @unique
+  updatedAt   DateTime     @updatedAt
+  apiKeys     ApiKey[]
+  tier        Tier         @relation(fields: [tierId], references: [id])
+  UserBilling UserBilling?
+}
+
+model Tier {
+  id                   String   @id @default(uuid())
+  name                 String   @unique
+  createdAt            DateTime @default(now())
+  dailyLimit           Int
+  nearbyRadiusMaxMiles Int
+  nearbyResultLimit    Int
+  resultLimit          Int
+  stripePriceId        String?  @unique
+  updatedAt            DateTime @updatedAt
+  user                 User[]
+}
+
+model FallbackGeocodes {
+  zip      String                    @id @db.VarChar(10)
+  lat      Decimal                   @db.Decimal(9, 6)
+  lng      Decimal                   @db.Decimal(9, 6)
+  location Unsupported("geography")?
+
+  @@index([location], type: Gist)
+}
+
+model GeocodeStaging {
+  ein          String   @id
+  zip          String
+  lat          Decimal?
+  lng          Decimal?
+  match_status String
+}
+
+model UserBilling {
+  id                   String    @id @default(uuid())
+  userId               String    @unique
+  stripeCustomerId     String?   @unique
+  stripeSubscriptionId String?   @unique
+  status               String?
+  currentPeriodStart   DateTime?
+  currentPeriodEnd     DateTime?
+  cancelAtPeriodEnd    Boolean   @default(false)
+  createdAt            DateTime  @default(now())
+  updatedAt            DateTime   @updatedAt
+  User                 User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model spatial_ref_sys {
+  srid      Int     @id
+  auth_name String? @db.VarChar(256)
+  auth_srid Int?
+  srtext    String? @db.VarChar(2048)
+  proj4text String? @db.VarChar(2048)
+}
+
+enum ApiKeyEnv {
+  LIVE
+  DEV
+}
