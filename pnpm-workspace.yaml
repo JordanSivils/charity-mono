@@ -1,5 +1,6 @@
 packages:
   - "apps/*"
   - "services/*"
+  - "services/*/*"
   - "shared/*"
   - "tools/local/*"
