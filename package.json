@@ -13,6 +13,8 @@
     "service:irs-upload:sam-validate": "sam validate --template-file services/irs-data-upload/template.yaml",
     "service:irs-upload:sam-build": "sam build --template-file services/irs-data-upload/template.yaml",
     "service:api:typecheck": "pnpm --filter @charity-mono/api run typecheck",
-    "service:api:build": "pnpm --filter @charity-mono/api run build"
+    "service:api:build": "pnpm --filter @charity-mono/api run build",
+    "app:platform-web:typecheck": "pnpm --filter @charity-mono/platform-web run typecheck",
+    "app:platform-web:lint": "pnpm --filter @charity-mono/platform-web run lint"
   }
 }
