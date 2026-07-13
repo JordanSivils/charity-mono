@@ -1,0 +1,35 @@
+# Dependencies
+node_modules/
+
+# Build output and caches
+.next/
+dist/
+build/
+coverage/
+.turbo/
+.aws-sam/
+*.tsbuildinfo
+
+# Hosting and service tooling
+.clerk/
+.vercel/
+
+# Local environment files; commit documented templates only.
+.env
+.env.local
+.env.*
+!.env.example
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Operating-system and editor artifacts
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
