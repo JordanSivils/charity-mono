@@ -1,0 +1,38 @@
+[
+    {
+      "code": "1",
+      "label": "Central",
+      "description": "This code is used if the organization is a central type organization (no group exemption) of a National, Regional or Geographic grouping of organizations."
+    },
+    {
+      "code": "2",
+      "label": "Intermediate",
+      "description": "This code is used if the organization is an intermediate organization (no group exemption) of a National, Regional or Geographic grouping of organizations (such as a state headquarters of a national organization)."
+    },
+    {
+      "code": "3",
+      "label": "Independent",
+      "description": "This code is used if the organization is an independent organization or an independent auxiliary (i.e., not affiliated with a National, Regional, or Geographic grouping of organizations)."
+    },
+    {
+      "code": "6",
+      "label": "Central",
+      "description": "This code is used if the organization is a parent (group ruling) and is not a church or 501(c)(1) organization."
+    },
+    {
+      "code": "7",
+      "label": "Intermediate",
+      "description": "This code is used if the organization is a group exemption intermediate organization of a National, Regional or Geographic grouping of organizations."
+    },
+    {
+      "code": "8",
+      "label": "Central",
+      "description": "This code is used if the organization is a parent (group ruling) and is a church or 501(c)(1) organization."
+    },
+    {
+      "code": "9",
+      "label": "Subordinate",
+      "description": "This code is used if the organization is a subordinate in a group ruling."
+    }
+  ]
+  

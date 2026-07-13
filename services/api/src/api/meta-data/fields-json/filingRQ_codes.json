@@ -1,0 +1,47 @@
+[
+    {
+      "code": "01",
+      "form": "990 or 990EZ",
+      "description": "Required to file Form 990 or Form 990EZ"
+    },
+    {
+      "code": "02",
+      "form": "990-N",
+      "description": "Required to file Form 990-N (e-Postcard) — income less than $50,000 per year"
+    },
+    {
+      "code": "03",
+      "form": "990",
+      "description": "Files as part of a group return"
+    },
+    {
+      "code": "04",
+      "form": "990-BL",
+      "description": "Black Lung Trusts required to file Form 990-BL"
+    },
+    {
+      "code": "06",
+      "form": "None",
+      "description": "Not required to file (church)"
+    },
+    {
+      "code": "07",
+      "form": "None",
+      "description": "Government organization under 501(c)(1)"
+    },
+    {
+      "code": "13",
+      "form": "None",
+      "description": "Not required to file (religious organization)"
+    },
+    {
+      "code": "14",
+      "form": "None",
+      "description": "Not required to file (instrumentalities of states or political subdivisions)"
+    },
+    {
+      "code": "00",
+      "form": "None",
+      "description": "Not required to file (all other)"
+    }
+]

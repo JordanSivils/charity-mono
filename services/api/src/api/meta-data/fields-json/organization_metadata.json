@@ -1,0 +1,22 @@
+[
+  {
+    "code": "1",
+    "description": "Corporation"
+  },
+  {
+    "code": "2",
+    "description": "Trust"
+  },
+  {
+    "code": "3",
+    "description": "Co-operative"
+  },
+  {
+    "code": "4",
+    "description": "Partnership"
+  },
+  {
+    "code": "5",
+    "description": "Association"
+  }
+]

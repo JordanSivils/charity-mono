@@ -1,0 +1,132 @@
+[
+  {
+    "field": "ein",
+    "label": "Employer Identification Number",
+    "description": "A nine-digit number assigned by the IRS to identify a particular organization's account."
+  },
+  {
+    "field": "name",
+    "label": "Primary Name of Organization",
+    "description": "Legal non-profit name."
+  },
+  {
+    "field": "ico",
+    "label": "In Care Of Name",
+    "description": "Person (officer, director, etc.) to whose attention any correspondence should be directed."
+  },
+  {
+    "field": "street",
+    "label": "Street Address",
+    "description": "Street address of the organization."
+  },
+  {
+    "field": "city",
+    "label": "City",
+    "description": "City where the organization is located."
+  },
+  {
+    "field": "state",
+    "label": "State",
+    "description": "State where the organization is located."
+  },
+  {
+    "field": "zip",
+    "label": "Zip Code",
+    "description": "Postal code of the organization."
+  },
+  {
+    "field": "group",
+    "label": "Group Exemption Number",
+    "description": "A four-digit internal number assigned to central or parent organizations holding group exemption letters."
+  },
+  {
+    "field": "subsection",
+    "label": "Subsection Code",
+    "description": "Codes shown under section 501(c) of the Internal Revenue Code of 1986 that define the category under which an organization may be exempt."
+  },
+  {
+    "field": "affiliation",
+    "label": "Affiliation Code",
+    "description": "Defines the organizational grouping."
+  },
+  {
+    "field": "classification",
+    "label": "Classification Code",
+    "description": "Codes under section 501(c) defining the classification of the organization within a subsection."
+  },
+  {
+    "field": "ruling",
+    "label": "Ruling Date",
+    "description": "Month and year (YYYYMM) on the ruling or determination letter recognizing the organization's exempt status."
+  },
+  {
+    "field": "deductibility",
+    "label": "Deductibility Code",
+    "description": "Signifies whether contributions made to the organization are deductible."
+  },
+  {
+    "field": "foundation",
+    "label": "Foundation Code",
+    "description": "Codes that differentiate between private foundations and public charities."
+  },
+  {
+    "field": "activity",
+    "label": "Activity Codes",
+    "description": "Deprecated with the adoption of the National Taxonomy of Exempt Entities (NTEE) coding system in January 1995. Previously three activity codes (AAABBBCCC) described the organization's cause."
+  },
+  {
+    "field": "organization",
+    "label": "Organization Code",
+    "description": "Indicates the legal structure of the nonprofit organization."
+  },
+  {
+    "field": "status",
+    "label": "Exempt Organization Status Code",
+    "description": "Defines the type of exemption held by the organization."
+  },
+  {
+    "field": "tax_period",
+    "label": "Tax Period",
+    "description": "Tax period of the latest return filed (YYYYMM)."
+  },
+  {
+    "field": "filing_req_code",
+    "label": "Filing Requirement Code",
+    "description": "Indicates the primary return(s) the organization is required to file."
+  },
+  {
+    "field": "pf_filing_req_code",
+    "label": "Private Foundation Filing Requirement Code",
+    "description": "Indicates the primary return(s) the organization is required to file for private foundations."
+  },
+  {
+    "field": "account_paid",
+    "label": "Accounting Period",
+    "description": "Designates the accounting period or fiscal year ending month (MM) of the organization."
+  },
+  {
+    "field": "asset_amount",
+    "label": "Asset Amount",
+    "description": "Total assets from the most recent Form 990 series return filed by the organization."
+  },
+  {
+    "field": "income_amount",
+    "label": "Income Amount",
+    "description": "Total income from the most recent Form 990 series return filed by the organization."
+  },
+  {
+    "field": "revenue_amount",
+    "label": "Revenue Amount",
+    "description": "Total revenue from the most recent Form 990 series return."
+  },
+  {
+    "field": "ntee_code",
+    "label": "National Taxonomy of Exempt Entities (NTEE) Code",
+    "description": "Code used to classify an exempt organization based on its primary exempt activity."
+  },
+  {
+    "field": "ntee_group",
+    "label": "National Taxonomy of Exempt Entities (NTEE) General Group",
+    "description": "A modifier used to describe activities in support of nonprofit organizations"
+  }
+]

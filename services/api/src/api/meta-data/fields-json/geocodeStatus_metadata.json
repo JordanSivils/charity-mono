@@ -1,0 +1,34 @@
+[
+    {
+        "code": 11,
+        "description": "Physical address, pending Census geocode"
+    },
+    {
+        "code": 12,
+        "description": "Physical address, Census geocode success"
+    },
+    {
+        "code": 13,
+        "description": "Physical address, Census geocode No Match, ZIP fallback success"
+    },
+    {
+        "code": 14,
+        "description": "Physical address, Census geocode Tied, ZIP fallback success"
+    },
+    {
+        "code": 15,
+        "description": "Physical address, Census geocode failed, ZIP fallback failed"
+    },
+    {
+        "code": 21,
+        "description": "PO Box, pending ZIP fallback geocode"
+    },
+    {
+        "code": 22,
+        "description": "PO Box, ZIP fallback geocode success"
+    },
+    {
+        "code": 23,
+        "description": "PO Box, ZIP fallback geocode failed"
+    }
+]

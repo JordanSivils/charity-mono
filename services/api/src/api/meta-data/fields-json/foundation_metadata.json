@@ -1,0 +1,75 @@
+[
+    {
+      "code": "00",
+      "description": "All organizations except 501(c)(3)"
+    },
+    {
+      "code": "02",
+      "description": "Private operating foundation exempt from paying excise taxes on investment income"
+    },
+    {
+      "code": "03",
+      "description": "Private operating foundation (other)"
+    },
+    {
+      "code": "04",
+      "description": "Private non-operating foundation"
+    },
+    {
+      "code": "09",
+      "description": "Suspense"
+    },
+    {
+      "code": "10",
+      "description": "Church 170(b)(1)(A)(i)"
+    },
+    {
+      "code": "11",
+      "description": "School 170(b)(1)(A)(ii)"
+    },
+    {
+      "code": "12",
+      "description": "Hospital or medical research organization 170(b)(1)(A)(iii)"
+    },
+    {
+      "code": "13",
+      "description": "Organization that operates for the benefit of a college or university and is owned or operated by a governmental unit 170(b)(1)(A)(iv)"
+    },
+    {
+      "code": "14",
+      "description": "Governmental unit 170(b)(1)(A)(v)"
+    },
+    {
+      "code": "15",
+      "description": "Organization that receives a substantial part of its support from a governmental unit or the general public 170(b)(1)(A)(vi)"
+    },
+    {
+      "code": "16",
+      "description": "Organization that normally receives no more than one-third of its support from gross investment income and unrelated business income and at the same time more than one-third of its support from contributions, fees, and gross receipts related to exempt purposes 509(a)(2)"
+    },
+    {
+      "code": "17",
+      "description": "Organizations operated solely for the benefit of and in conjunction with organizations described in 10 through 16 above 509(a)(3)"
+    },
+    {
+      "code": "18",
+      "description": "Organization organized and operated to test for public safety 509(a)(4)"
+    },
+    {
+      "code": "21",
+      "description": "509(a)(3) Type I"
+    },
+    {
+      "code": "22",
+      "description": "509(a)(3) Type II"
+    },
+    {
+      "code": "23",
+      "description": "509(a)(3) Type III functionally integrated"
+    },
+    {
+      "code": "24",
+      "description": "509(a)(3) Type III not functionally integrated"
+    }
+  ]
+  
