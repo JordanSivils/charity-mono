@@ -2,5 +2,9 @@
   "name": "charity-mono",
   "version": "0.0.0",
   "private": true,
-  "packageManager": "pnpm@10.26.2"
+  "packageManager": "pnpm@10.26.2",
+  "scripts": {
+    "tool:geocode:typecheck": "pnpm --filter @charity-mono/geocode-worker run typecheck",
+    "tool:geocode:build": "pnpm --filter @charity-mono/geocode-worker run build"
+  }
 }
