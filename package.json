@@ -6,6 +6,8 @@
   "scripts": {
     "tool:geocode:typecheck": "pnpm --filter @charity-mono/geocode-worker run typecheck",
     "tool:geocode:build": "pnpm --filter @charity-mono/geocode-worker run build",
+    "service:geocode:typecheck": "pnpm --filter @charity-mono/geocode-worker-service run typecheck",
+    "service:geocode:build": "pnpm --filter @charity-mono/geocode-worker-service run build",
     "tool:irs-import:typecheck": "pnpm --filter @charity-mono/irs-data-import run typecheck",
     "tool:irs-import:build": "pnpm --filter @charity-mono/irs-data-import run build",
     "service:irs-upload:typecheck": "pnpm --filter @charity-mono/irs-data-upload run typecheck",
