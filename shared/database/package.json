@@ -1,0 +1,19 @@
+{
+  "name": "@charity-mono/database",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "prisma:generate": "prisma generate",
+    "prisma:validate": "prisma validate",
+    "prisma:migrate:dev": "prisma migrate dev",
+    "prisma:migrate:deploy": "prisma migrate deploy"
+  },
+  "dependencies": {
+    "@prisma/client": "^7.4.2"
+  },
+  "devDependencies": {
+    "dotenv": "^17.3.1",
+    "prisma": "^7.4.2"
+  }
+}

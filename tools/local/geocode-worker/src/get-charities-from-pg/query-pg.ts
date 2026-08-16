@@ -21,10 +21,11 @@ const QUERY = `
 
 export const exportBatch = async () => {
   const pgClient = await pool.connect();
+  const outputPath = "src/exported-csv-from-pg/geocode_batch.csv";
 
-  const fileStream = fs.createWriteStream(
-    "src/exported-csv-from-pg/geocode_batch.csv"
-  );
+  fs.mkdirSync("src/exported-csv-from-pg", { recursive: true });
+
+  const fileStream = fs.createWriteStream(outputPath);
 
   try {
     const dbStream = pgClient.query(copyTo(QUERY)) as unknown as Readable;

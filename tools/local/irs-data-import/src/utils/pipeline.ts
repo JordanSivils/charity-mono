@@ -70,7 +70,7 @@ export const streamData = async (url: string) => {
             }
             pipeline(
                 res,
-                parse({headers: true, maxRows: 400}),
+                parse({headers: true, maxRows: 25000}),
                 toSnapshot(),
                 addHash(),
                 convertToCsv(),

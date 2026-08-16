@@ -6,10 +6,13 @@
   "scripts": {
     "tool:geocode:typecheck": "pnpm --filter @charity-mono/geocode-worker run typecheck",
     "tool:geocode:build": "pnpm --filter @charity-mono/geocode-worker run build",
+    "tool:geocode:run": "pnpm run tool:geocode:build && pnpm --filter @charity-mono/geocode-worker run full-geocode",
     "service:geocode:typecheck": "pnpm --filter @charity-mono/geocode-worker-service run typecheck",
     "service:geocode:build": "pnpm --filter @charity-mono/geocode-worker-service run build",
+    "service:geocode:run": "pnpm run service:geocode:build && pnpm --filter @charity-mono/geocode-worker-service run full-geocode",
     "tool:irs-import:typecheck": "pnpm --filter @charity-mono/irs-data-import run typecheck",
     "tool:irs-import:build": "pnpm --filter @charity-mono/irs-data-import run build",
+    "tool:irs-import:run": "pnpm run tool:irs-import:build && pnpm --filter @charity-mono/irs-data-import run start",
     "service:irs-upload:typecheck": "pnpm --filter @charity-mono/irs-data-upload run typecheck",
     "service:irs-upload:test": "pnpm --filter @charity-mono/irs-data-upload run test",
     "service:irs-upload:sam-validate": "sam validate --template-file services/irs-data-upload/template.yaml",

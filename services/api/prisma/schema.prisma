@@ -51,6 +51,7 @@ model Charity {
   @@index([deductibility])
   @@index([status])
   @@index([geocode_status])
+  @@index([location], type: Gist, map: "Charity_location_gist_idx")
 }
 
 model CharityStaging {
