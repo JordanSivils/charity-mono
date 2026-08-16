@@ -33,7 +33,7 @@ export const submitBatch = async () => {
     throw new Error(`Census request failed: ${response.status}`)
   }
 
-  fs.mkdirSync("src/from-stream/geocoded-results", { recursive: true })
+  fs.mkdirSync(path.dirname(OUTPUT_FILE), { recursive: true })
   fs.writeFileSync(OUTPUT_FILE, bodyText, "utf8")
 
   console.log("✅ Geocoded CSV saved:", OUTPUT_FILE)
