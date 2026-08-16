@@ -1,5 +1,5 @@
 
-import { PrismaClient } from '@/generated/prisma/client'
+import { PrismaClient } from '@charity-mono/database/client'
 import { PrismaPg } from '@prisma/adapter-pg'
 
 const globalForPrisma = global as unknown as {

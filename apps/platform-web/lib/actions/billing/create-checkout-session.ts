@@ -24,7 +24,7 @@ export async function createCheckoutSession(tierId: string) {
       clerkId: clerkUserId,
     },
     include: {
-      UserBilling: true,
+      billing: true,
     },
   });
 
@@ -48,8 +48,8 @@ export async function createCheckoutSession(tierId: string) {
 
   const session = await stripe.checkout.sessions.create({
     mode: "subscription",
-    customer: user.UserBilling?.stripeCustomerId ?? undefined,
-    customer_email: user.UserBilling?.stripeCustomerId ? undefined : user.email,
+    customer: user.billing?.stripeCustomerId ?? undefined,
+    customer_email: user.billing?.stripeCustomerId ? undefined : user.email,
 
     line_items: [
       {

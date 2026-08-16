@@ -1,5 +1,5 @@
 import { NearbyCharityQuery } from "../types/nearby.request.types.js";
-import { Prisma } from "../../../generated/prisma/client.js";
+import { Prisma } from "@charity-mono/database/client";
 
 export function buildNearbyWhereSql(q: NearbyCharityQuery): Prisma.Sql {
   const conditions: Prisma.Sql[] = [

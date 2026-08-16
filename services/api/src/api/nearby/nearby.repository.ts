@@ -1,5 +1,5 @@
 import { prisma } from "../../config/prisma.js";
-import { Prisma } from "../../generated/prisma/client.js";
+import { Prisma } from "@charity-mono/database/client";
 import { NearbyCharityQuery } from "./types/nearby.request.types.js";
 import { resolveNearbyOrigin } from "./utils/nearby-resolver.js";
 import { buildNearbyWhereSql } from "./utils/nearby-query-builder.js";

@@ -54,7 +54,7 @@ export const getOrCreateUser = async () => {
     },
     include: {
       tier: true,
-      UserBilling: true,
+      billing: true,
       apiKeys: {
         where: {
             isActive: true
@@ -74,11 +74,11 @@ export const getOrCreateUser = async () => {
 
     return {
       data: user,
-      userBilling: user.UserBilling
+      userBilling: user.billing
         ? {
-            status: user.UserBilling.status,
-            cancelAtPeriodEnd: user.UserBilling.cancelAtPeriodEnd,
-            currentPeriodEnd: user.UserBilling.currentPeriodEnd,
+            status: user.billing.status,
+            cancelAtPeriodEnd: user.billing.cancelAtPeriodEnd,
+            currentPeriodEnd: user.billing.currentPeriodEnd,
           }
         : null,
 

@@ -1,4 +1,4 @@
-import { Prisma } from "../../../generated/prisma/client.js";
+import { Prisma } from "@charity-mono/database/client";
 import { CharityQuery } from "../types/charity.request.types.js";
 
 export const charityFilterFields = [

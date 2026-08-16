@@ -4,10 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "predev": "pnpm --filter @charity-mono/database run build",
     "dev": "tsx watch src/server.ts",
-    "build": "tsc",
-    "typecheck": "tsc --noEmit",
-    "prisma:generate": "prisma generate",
+    "build": "pnpm --filter @charity-mono/database run build && tsc",
+    "typecheck": "pnpm --filter @charity-mono/database run build && tsc --noEmit",
+    "prisma:generate": "pnpm --filter @charity-mono/database run prisma:generate",
     "start": "node dist/server.js"
   },
   "keywords": [],
@@ -20,14 +21,13 @@
     "@types/express": "^5.0.6",
     "@types/node": "^25.3.3",
     "@types/pg": "^8.18.0",
-    "prisma": "^7.4.2",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   },
   "dependencies": {
     "@asteasolutions/zod-to-openapi": "^8.4.3",
+    "@charity-mono/database": "workspace:*",
     "@prisma/adapter-pg": "^7.4.2",
-    "@prisma/client": "^7.4.2",
     "cors": "^2.8.6",
     "dotenv": "^17.3.1",
     "express": "^5.2.1",
