@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useId, useState } from 'react';
+import { useId } from 'react';
 
 import { MoonIcon, SunIcon } from 'lucide-react';
 
@@ -9,13 +9,8 @@ import { useTheme } from 'next-themes';
 
 const ToggleTheme = () => {
   const id = useId();
-  const [checked, setChecked] = useState(true);
-
-  const { theme, setTheme, resolvedTheme } = useTheme();
-
-  useEffect(() => {
-    setChecked(resolvedTheme === 'dark');
-  }, [resolvedTheme]);
+  const { setTheme, resolvedTheme } = useTheme();
+  const checked = resolvedTheme === 'dark';
 
   return (
     <div
@@ -34,7 +29,6 @@ const ToggleTheme = () => {
         id={id}
         checked={checked}
         onCheckedChange={(next) => {
-          setChecked(next);
           setTheme(next ? 'dark' : 'light');
         }}
         aria-labelledby={`${id}-dark ${id}-light`}

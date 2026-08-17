@@ -7,12 +7,9 @@ import { createTier } from "@/lib/actions/tier/create-tier";
 import { CreateTier, createTierSchema, tierSchema, TierType } from "@/lib/actions/tier/tier-types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 
 export function TierForm() {
-    const [error, setError ] = useState(null)
-
     const router = useRouter()
 
     const {
@@ -37,9 +34,7 @@ export function TierForm() {
             await createTier(data);
             reset()
             router.refresh()
-        } catch (error: any) {
-            setError(error?.message)
-        }
+        } catch {}
     }
 
     return (
