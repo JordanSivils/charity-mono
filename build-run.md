@@ -8,7 +8,7 @@ This file is the restart point for the local data workflows. The two commands be
 - Confirm the package-local `.env` contains the intended, non-production `DATABASE_URL`:
   - `tools/local/irs-data-import/.env`
   - `tools/local/geocode-worker/.env`
-- Confirm the target database has the canonical API schema and migrations from `services/api/prisma`. Never apply the historical migrations under `tools/local/irs-data-import/prisma` to prepare a database.
+- Confirm the target database has the canonical schema and migrations from `shared/database/prisma`. Never apply the historical migrations under `tools/local/irs-data-import/prisma` to prepare a database.
 - Do not run the importer and geocode worker at the same time. Run an import to completion first, then geocode the records it produced.
 - These are live operational workflows, not dry runs. They can download data, call the Census service, use PostgreSQL `COPY`, merge records, and clear staging tables. Check the terminal output to completion before leaving the run unattended.
 

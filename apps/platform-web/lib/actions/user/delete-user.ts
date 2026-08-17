@@ -17,7 +17,7 @@ export const deleteUser = async () => {
   // 1. Find user in your DB
   const user = await prisma.user.findUnique({
     where: { clerkId: clerkUserId },
-    include: { UserBilling: true },
+    include: { billing: true },
   });
 
   if (!user) {
@@ -27,18 +27,18 @@ export const deleteUser = async () => {
   console.log("📦 Found user in DB:", {
     userId: user.id,
     email: user.email,
-    hasBilling: !!user.UserBilling,
+    hasBilling: !!user.billing,
   });
 
   // 2. Cancel Stripe subscription if it exists
-  if (user.UserBilling?.stripeSubscriptionId) {
+  if (user.billing?.stripeSubscriptionId) {
     console.log("💳 Canceling Stripe subscription:", {
-      subscriptionId: user.UserBilling.stripeSubscriptionId,
+      subscriptionId: user.billing.stripeSubscriptionId,
     });
 
     try {
       await stripe.subscriptions.cancel(
-        user.UserBilling.stripeSubscriptionId
+        user.billing.stripeSubscriptionId
       );
 
       console.log("✅ Stripe subscription canceled");

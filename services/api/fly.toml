@@ -4,7 +4,7 @@ primary_region = 'iad'
 [build]
 
 [deploy]
-  release_command = 'npx prisma migrate deploy'
+  release_command = 'pnpm --dir /app --filter @charity-mono/database run prisma:migrate:deploy'
 
 [http_service]
   internal_port = 3000

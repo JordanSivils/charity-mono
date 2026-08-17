@@ -4,6 +4,10 @@
   "private": true,
   "packageManager": "pnpm@10.26.2",
   "scripts": {
+    "database:generate": "pnpm --filter @charity-mono/database run prisma:generate",
+    "database:validate": "pnpm --filter @charity-mono/database run prisma:validate",
+    "database:migrate:dev": "pnpm --filter @charity-mono/database run prisma:migrate:dev",
+    "database:migrate:status": "pnpm --filter @charity-mono/database run prisma:migrate:status",
     "tool:geocode:typecheck": "pnpm --filter @charity-mono/geocode-worker run typecheck",
     "tool:geocode:build": "pnpm --filter @charity-mono/geocode-worker run build",
     "tool:geocode:run": "pnpm run tool:geocode:build && pnpm --filter @charity-mono/geocode-worker run full-geocode",

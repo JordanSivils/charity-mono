@@ -22,7 +22,7 @@ export async function createBillingPortalSession() {
   const user = await prisma.user.findUnique({
     where: { clerkId: clerkUserId },
     include: { 
-      UserBilling: true,
+      billing: true,
       tier: {
         select: { stripePriceId: true}
       }
@@ -33,12 +33,12 @@ export async function createBillingPortalSession() {
     throw new Error("Invalid tier");
   }
 
-  if (!user?.UserBilling?.stripeCustomerId) {
+  if (!user?.billing?.stripeCustomerId) {
     throw new Error("No Stripe customer found");
   }
 
   const session = await stripe.billingPortal.sessions.create({
-    customer: user.UserBilling.stripeCustomerId,
+    customer: user.billing.stripeCustomerId,
     return_url: `${appUrl}/dashboard`,
   });
 

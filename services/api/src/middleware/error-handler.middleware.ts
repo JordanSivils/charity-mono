@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { ZodError } from "zod";
-import { Prisma } from "../generated/prisma/client.js";
+import { Prisma } from "@charity-mono/database/client";
 import { logger } from "../utils/logger.js";
 
 export type ErrorCode =

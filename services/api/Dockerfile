@@ -2,17 +2,24 @@ FROM node:22-alpine
 
 WORKDIR /app
 
-COPY package*.json ./
+RUN corepack enable
 
-RUN npm ci
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+COPY shared/database/package.json shared/database/package.json
+COPY services/api/package.json services/api/package.json
 
-COPY . .
+RUN pnpm install --frozen-lockfile --filter @charity-mono/api...
+
+COPY shared/database shared/database
+COPY services/api services/api
 
 ENV DATABASE_URL="postgresql://placeholder:placeholder@localhost:5432/placeholder"
 
-RUN npx prisma generate
-RUN npm run build
+RUN pnpm database:generate
+RUN pnpm --filter @charity-mono/api run build
 
 EXPOSE 3000
 
-CMD ["npm", "start"]
+WORKDIR /app/services/api
+
+CMD ["pnpm", "start"]

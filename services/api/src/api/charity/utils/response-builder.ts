@@ -1,4 +1,4 @@
-import { Prisma } from "../../../generated/prisma/client.js"
+import { Prisma } from "@charity-mono/database/client"
 
 export const charityFields = [
   "ein",
