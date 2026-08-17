@@ -1,0 +1,38 @@
+# Local dependencies, build output, and caches
+node_modules/
+**/node_modules/
+dist/
+**/dist/
+build/
+**/build/
+coverage/
+**/coverage/
+.turbo/
+**/.turbo/
+.next/
+**/.next/
+
+# Repository and CI metadata
+.git/
+.github/
+
+# Local configuration and logs
+.env
+.env.*
+**/.env
+**/.env.*
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Workspaces not used by the API image
+apps/
+tools/
+services/geocode-worker/
+services/irs-data-upload/
+
+# Local-only project artifacts
+.ai/
+.aws-sam/

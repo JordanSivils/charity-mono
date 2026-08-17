@@ -10,7 +10,9 @@ permissions:
 
 concurrency:
   group: ci-${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+  # Keep pull-request feedback current, but never cancel an in-progress
+  # production deployment on a subsequent push to main.
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   changes:
@@ -56,6 +58,7 @@ jobs:
               - 'pnpm-workspace.yaml'
               - '.nvmrc'
               - '.npmrc'
+              - '.dockerignore'
               - '.github/workflows/**'
 
   database:
@@ -215,3 +218,29 @@ jobs:
           case ",$RESULTS," in
             *,failure,*|*,cancelled,*) exit 1 ;;
           esac
+
+  deploy-api:
+    name: Deploy services/api to Fly
+    needs: [changes, ci-gate]
+    if: >-
+      github.event_name == 'push' &&
+      github.ref == 'refs/heads/main' &&
+      needs.changes.outputs.api == 'true' &&
+      needs.ci-gate.result == 'success'
+    runs-on: ubuntu-latest
+    concurrency:
+      group: fly-api-production
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: superfly/flyctl-actions/setup-flyctl@master
+
+      - name: Deploy API
+        working-directory: ${{ github.workspace }}
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+        run: |
+          flyctl deploy \
+            --config services/api/fly.toml \
+            --dockerfile services/api/Dockerfile
