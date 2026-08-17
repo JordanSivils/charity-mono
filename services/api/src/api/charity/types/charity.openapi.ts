@@ -23,7 +23,7 @@ registry.registerPath({
     },
   },
 });
-
+// comment
 registry.registerPath({
   method: "get",
   path: "/charities/{ein}",
