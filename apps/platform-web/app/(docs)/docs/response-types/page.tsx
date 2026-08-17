@@ -210,8 +210,8 @@ export default function ResponseTypesPage() {
           <li>
             <code>source</code> — how the origin was determined
             <ul className="list-disc pl-5 mt-1">
-              <li><code>"zip"</code> — derived from <code>origin_zip</code></li>
-              <li><code>"coordinates"</code> — provided via <code>lat</code> and <code>lng</code></li>
+              <li><code>&quot;zip&quot;</code> — derived from <code>origin_zip</code></li>
+              <li><code>&quot;coordinates&quot;</code> — provided via <code>lat</code> and <code>lng</code></li>
             </ul>
           </li>
         </ul>
