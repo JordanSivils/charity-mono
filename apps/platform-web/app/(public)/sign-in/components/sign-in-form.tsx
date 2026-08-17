@@ -1,6 +1,6 @@
 'use client'
 
-import { SignedIn, SignedOut, useClerk, useSignIn } from "@clerk/nextjs"
+import { SignedIn, SignedOut, useSignIn } from "@clerk/nextjs"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
@@ -25,7 +25,6 @@ type SignInForm = z.infer<typeof signInSchema>
 export function SignInForm() {
   const [error, setError] = useState<string | null>(null)
   const { isLoaded, signIn, setActive } = useSignIn()
-  const { openSignIn } = useClerk()
   const router = useRouter()
 
   const {

@@ -8,7 +8,9 @@
     "prebuild": "pnpm --filter @charity-mono/database run build",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint",
+    "lint": "pnpm run lint:check",
+    "lint:check": "eslint",
+    "lint:fix": "eslint --fix",
     "pretypecheck": "pnpm --filter @charity-mono/database run build",
     "typecheck": "tsc --noEmit",
     "prisma:generate": "pnpm --filter @charity-mono/database run prisma:generate"

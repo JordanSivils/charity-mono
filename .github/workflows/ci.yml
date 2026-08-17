@@ -1,0 +1,217 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  changes:
+    name: Detect affected workspaces
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+    outputs:
+      database: ${{ steps.filter.outputs.database == 'true' || steps.filter.outputs.global == 'true' }}
+      api: ${{ steps.filter.outputs.api == 'true' || steps.filter.outputs.database == 'true' || steps.filter.outputs.global == 'true' }}
+      platform_web: ${{ steps.filter.outputs.platform_web == 'true' || steps.filter.outputs.database == 'true' || steps.filter.outputs.global == 'true' }}
+      geocode_worker: ${{ steps.filter.outputs.geocode_worker == 'true' || steps.filter.outputs.database == 'true' || steps.filter.outputs.global == 'true' }}
+      irs_upload: ${{ steps.filter.outputs.irs_upload == 'true' || steps.filter.outputs.database == 'true' || steps.filter.outputs.global == 'true' }}
+      local_geocode_worker: ${{ steps.filter.outputs.local_geocode_worker == 'true' || steps.filter.outputs.database == 'true' || steps.filter.outputs.global == 'true' }}
+      local_irs_import: ${{ steps.filter.outputs.local_irs_import == 'true' || steps.filter.outputs.database == 'true' || steps.filter.outputs.global == 'true' }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - id: filter
+        uses: dorny/paths-filter@v4
+        with:
+          filters: |
+            database:
+              - 'shared/database/**'
+            api:
+              - 'services/api/**'
+            platform_web:
+              - 'apps/platform-web/**'
+            geocode_worker:
+              - 'services/geocode-worker/**'
+            irs_upload:
+              - 'services/irs-data-upload/**'
+            local_geocode_worker:
+              - 'tools/local/geocode-worker/**'
+            local_irs_import:
+              - 'tools/local/irs-data-import/**'
+            global:
+              - 'package.json'
+              - 'pnpm-lock.yaml'
+              - 'pnpm-workspace.yaml'
+              - '.nvmrc'
+              - '.npmrc'
+              - '.github/workflows/**'
+
+  database:
+    name: shared/database
+    needs: changes
+    if: needs.changes.outputs.database == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.26.2
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter @charity-mono/database run prisma:validate
+      - run: pnpm --filter @charity-mono/database run typecheck
+      - run: pnpm --filter @charity-mono/database run build
+
+  api:
+    name: services/api
+    needs: changes
+    if: needs.changes.outputs.api == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.26.2
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter @charity-mono/api run typecheck
+      - run: pnpm --filter @charity-mono/api run build
+
+  platform-web:
+    name: apps/platform-web
+    needs: changes
+    if: needs.changes.outputs.platform_web == 'true'
+    runs-on: ubuntu-latest
+    env:
+      # Inert Clerk test key required while Next prerenders ClerkProvider.
+      NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: pk_test_ZXhhbXBsZS5hY2NvdW50cy5kZXYk
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.26.2
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter @charity-mono/platform-web run lint:check
+      - run: pnpm --filter @charity-mono/platform-web run typecheck
+      - run: pnpm --filter @charity-mono/platform-web run build
+
+  geocode-worker:
+    name: services/geocode-worker
+    needs: changes
+    if: needs.changes.outputs.geocode_worker == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.26.2
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter @charity-mono/geocode-worker-service run typecheck
+      - run: pnpm --filter @charity-mono/geocode-worker-service run build
+
+  irs-upload:
+    name: services/irs-data-upload
+    needs: changes
+    if: needs.changes.outputs.irs_upload == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.26.2
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - uses: aws-actions/setup-sam@v2
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter @charity-mono/irs-data-upload run lint:check
+      - run: pnpm --filter @charity-mono/irs-data-upload run typecheck
+      - run: pnpm --filter @charity-mono/irs-data-upload run test
+      - run: pnpm --filter @charity-mono/irs-data-upload run validate
+      - run: pnpm --filter @charity-mono/irs-data-upload run build
+
+  local-geocode-worker:
+    name: tools/local/geocode-worker
+    needs: changes
+    if: needs.changes.outputs.local_geocode_worker == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.26.2
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter @charity-mono/geocode-worker run typecheck
+      - run: pnpm --filter @charity-mono/geocode-worker run build
+
+  local-irs-import:
+    name: tools/local/irs-data-import
+    needs: changes
+    if: needs.changes.outputs.local_irs_import == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.26.2
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter @charity-mono/irs-data-import run typecheck
+      - run: pnpm --filter @charity-mono/irs-data-import run build
+
+  ci-gate:
+    name: ci-gate
+    if: always()
+    needs:
+      - changes
+      - database
+      - api
+      - platform-web
+      - geocode-worker
+      - irs-upload
+      - local-geocode-worker
+      - local-irs-import
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fail when an affected validation job failed
+        env:
+          RESULTS: ${{ join(needs.*.result, ',') }}
+        run: |
+          echo "Job results: $RESULTS"
+          case ",$RESULTS," in
+            *,failure,*|*,cancelled,*) exit 1 ;;
+          esac

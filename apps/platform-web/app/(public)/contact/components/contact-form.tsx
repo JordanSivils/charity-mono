@@ -42,8 +42,8 @@ export function ContactForm() {
       setSuccess(true)
       setEmail("")
       setMessage("")
-    } catch (err: any) {
-      setError(err.message)
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : "Failed to send message")
     } finally {
       setLoading(false)
     }

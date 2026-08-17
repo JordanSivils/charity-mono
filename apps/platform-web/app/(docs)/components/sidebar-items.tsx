@@ -1,4 +1,4 @@
-import { BookText, BookType, CircleSlash2, Compass, Filter, Flag, Gavel, ListChecks, ListFilter, Notebook, Rocket, User } from "lucide-react";
+import { BookType, CircleSlash2, Compass, Filter, Flag, Gavel, ListChecks, ListFilter, Notebook, Rocket, User } from "lucide-react";
 
 export const docsSidebarItems = [
     {
