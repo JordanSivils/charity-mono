@@ -4,6 +4,12 @@
   "private": true,
   "packageManager": "pnpm@10.26.2",
   "scripts": {
+    "lint": "pnpm run lint:check",
+    "lint:check": "pnpm -r --if-present run lint:check",
+    "typecheck": "pnpm -r --if-present run typecheck",
+    "test": "pnpm -r --if-present run test",
+    "build": "pnpm -r --if-present run build",
+    "check": "pnpm run lint:check && pnpm run typecheck && pnpm run test && pnpm run build",
     "database:generate": "pnpm --filter @charity-mono/database run prisma:generate",
     "database:validate": "pnpm --filter @charity-mono/database run prisma:validate",
     "database:migrate:dev": "pnpm --filter @charity-mono/database run prisma:migrate:dev",
@@ -17,13 +23,15 @@
     "tool:irs-import:typecheck": "pnpm --filter @charity-mono/irs-data-import run typecheck",
     "tool:irs-import:build": "pnpm --filter @charity-mono/irs-data-import run build",
     "tool:irs-import:run": "pnpm run tool:irs-import:build && pnpm --filter @charity-mono/irs-data-import run start",
+    "service:irs-upload:lint": "pnpm --filter @charity-mono/irs-data-upload run lint:check",
     "service:irs-upload:typecheck": "pnpm --filter @charity-mono/irs-data-upload run typecheck",
     "service:irs-upload:test": "pnpm --filter @charity-mono/irs-data-upload run test",
-    "service:irs-upload:sam-validate": "sam validate --template-file services/irs-data-upload/template.yaml",
-    "service:irs-upload:sam-build": "sam build --template-file services/irs-data-upload/template.yaml",
+    "service:irs-upload:sam-validate": "pnpm --filter @charity-mono/irs-data-upload run validate",
+    "service:irs-upload:sam-build": "pnpm --filter @charity-mono/irs-data-upload run build",
     "service:api:typecheck": "pnpm --filter @charity-mono/api run typecheck",
     "service:api:build": "pnpm --filter @charity-mono/api run build",
     "app:platform-web:typecheck": "pnpm --filter @charity-mono/platform-web run typecheck",
-    "app:platform-web:lint": "pnpm --filter @charity-mono/platform-web run lint"
+    "app:platform-web:lint": "pnpm --filter @charity-mono/platform-web run lint:check",
+    "app:platform-web:build": "pnpm --filter @charity-mono/platform-web run build"
   }
 }

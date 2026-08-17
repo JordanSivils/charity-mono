@@ -8,10 +8,13 @@
   "license": "MIT",
   "scripts": {
     "unit": "jest",
-    "lint": "eslint '*.ts' --quiet --fix",
+    "lint": "pnpm run lint:check",
+    "lint:check": "eslint '*.ts' --quiet",
+    "lint:fix": "eslint '*.ts' --quiet --fix",
     "compile": "tsc --noEmit",
     "typecheck": "tsc --noEmit",
-    "build": "sam build",
+    "validate": "sam validate --template-file ../template.yaml",
+    "build": "sam build --template-file ../template.yaml",
     "test": "pnpm run compile && pnpm run unit"
   },
   "dependencies": {
