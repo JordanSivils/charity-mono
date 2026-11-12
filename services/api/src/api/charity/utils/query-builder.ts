@@ -47,24 +47,24 @@ export const buildCharityWhere = (q: CharityQuery): Prisma.CharityWhereInput => 
       }
     }
 
-    if (q.asset_amount_gte || q.asset_amount_lte) {
+    if (q.asset_amount_gte !== undefined || q.asset_amount_lte !== undefined) {
       where.asset_amount = {
-        ...(q.asset_amount_gte && { gte: q.asset_amount_gte}),
-        ...(q.asset_amount_lte && { lte: q.asset_amount_lte}),
+        ...(q.asset_amount_gte !== undefined && { gte: q.asset_amount_gte}),
+        ...(q.asset_amount_lte !== undefined && { lte: q.asset_amount_lte}),
       }
     }
 
-    if (q.income_amount_gte || q.income_amount_lte) {
+    if (q.income_amount_gte !== undefined || q.income_amount_lte !== undefined) {
       where.income_amount = {
-        ...(q.income_amount_gte && { gte: q.income_amount_gte}),
-        ...(q.income_amount_lte && { lte: q.income_amount_lte}),
+        ...(q.income_amount_gte !== undefined && { gte: q.income_amount_gte}),
+        ...(q.income_amount_lte !== undefined && { lte: q.income_amount_lte}),
       }
     }
 
-    if (q.revenue_amount_gte || q.revenue_amount_lte) {
+    if (q.revenue_amount_gte !== undefined || q.revenue_amount_lte !== undefined) {
       where.revenue_amount = {
-        ...(q.revenue_amount_gte && { gte: q.revenue_amount_gte}),
-        ...(q.revenue_amount_lte && { lte: q.revenue_amount_lte}),
+        ...(q.revenue_amount_gte !== undefined && { gte: q.revenue_amount_gte}),
+        ...(q.revenue_amount_lte !== undefined && { lte: q.revenue_amount_lte}),
       }
     }
 
@@ -77,21 +77,11 @@ export const buildCharityWhere = (q: CharityQuery): Prisma.CharityWhereInput => 
     }
 
     if (q.state?.length) {
-      where.OR = q.state.map((state) => ({
-        state: {
-          equals: state,
-          mode: "insensitive",
-        },
-      }));
+      where.state = { in: q.state, mode: "insensitive" };
     }
 
     if (q.city?.length) {
-      where.OR = q.city.map((city) => ({
-        city: {
-          equals: city,
-          mode: "insensitive",
-        },
-      }));
+      where.city = { in: q.city, mode: "insensitive" };
     }
 
     
