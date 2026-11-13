@@ -6,9 +6,9 @@
   "scripts": {
     "lint": "pnpm run lint:check",
     "lint:check": "pnpm -r --if-present run lint:check",
-    "typecheck": "pnpm -r --if-present run typecheck",
+    "typecheck": "pnpm -r --workspace-concurrency=1 --if-present run typecheck",
     "test": "pnpm -r --if-present run test",
-    "build": "pnpm -r --if-present run build",
+    "build": "pnpm -r --workspace-concurrency=1 --if-present run build",
     "check": "pnpm run lint:check && pnpm run typecheck && pnpm run test && pnpm run build",
     "database:generate": "pnpm --filter @charity-mono/database run prisma:generate",
     "database:validate": "pnpm --filter @charity-mono/database run prisma:validate",
